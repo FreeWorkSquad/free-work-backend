@@ -5,4 +5,4 @@ LOG:
   ROTATION: 00:00
   RETENTION: 10 days
   COMPRESSION: zip
-  PATH: D:/project/free-work-backend/logs  #TODO: 로그 PATH 설정
+  PATH: ./log
