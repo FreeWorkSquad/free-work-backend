@@ -2,6 +2,7 @@ from timezonefinder import TimezoneFinder
 from pydantic import constr
 
 from app.models import Coordinate, AttendanceCheckResponse
+from app.src.attendance.time_validation import TimeValidationStrategy, TimeValidationStrategyDefault
 from app.src.database.fake_database import fake_db
 from app.src.types import attendance_check_in_type
 from geopy.geocoders import Nominatim
@@ -17,10 +18,12 @@ class AttendanceCheck:
     def __init__(
             self,
             account_id: constr,
-            coordinate: Coordinate
+            coordinate: Coordinate,
+            time_validation_strategy: TimeValidationStrategy = TimeValidationStrategyDefault()
     ):
         self.coordinate = coordinate if coordinate is not None else AttendanceCheck.DEFAULT_COORDINATE
         self.account_id = account_id if account_id is not None else AttendanceCheck.DEFAULT_ACCOUNT_ID
+        self.time_validation_strategy = time_validation_strategy
 
     def attendance_check_in(self) -> attendance_check_in_type:
         # 1. account_id 정보가 DB에 존재하는지 확인
@@ -31,8 +34,7 @@ class AttendanceCheck:
         # 2. coordinate를 기반으로 구한 시간정보(현재 시각)이 근무 시작 예정 시간보다 0~30분 이전인지 확인
         current_time = datetime.strptime(self.get_current_time(self.coordinate.latitude, self.coordinate.longitude),"%H:%M:%S",)
         work_start_time = datetime.strptime(account_info["work_start_time"], "%H:%M:%S",)
-        time_difference = (current_time - work_start_time).total_seconds() / 60  # 분 단위로 차이 계산
-        if time_difference < 0 or time_difference > 30:
+        if self.time_validation_strategy.is_valid(current_time,work_start_time):
             raise ValueError("출근 시간이 유효하지 않습니다.")
 
         # 3. coordinate가 회사 위경도 정보에서 오차 범위 이내인지 확인
