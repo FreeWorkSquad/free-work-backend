@@ -23,7 +23,7 @@ attendance_example = {
     "normal": attendance_normal_example
 }
 
-attendance_example1 = {
+attendance_coordinate_example1 = {
     "account_id": "jude0124",
     "coordinate": {
         "latitude": 37.4002437530466,
