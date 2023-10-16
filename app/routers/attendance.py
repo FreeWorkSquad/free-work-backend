@@ -23,7 +23,7 @@ router = APIRouter(
 
 # 1. mock data를 사용하는 경우
 
-@router.post("/check/in", response_model=AttendanceCheckInAPIResponseModel, response_class=JSONResponse)
+@router.post("/check-in", response_model=AttendanceCheckInAPIResponseModel, response_class=JSONResponse)
 async def work_start(
         request: AttendanceCheckRequest = Body(
             title="출근 신청을 위한 인풋 파라미터 설정",
