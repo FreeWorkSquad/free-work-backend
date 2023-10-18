@@ -7,8 +7,9 @@ from fastapi import APIRouter, Depends, Body
 from fastapi.responses import JSONResponse
 
 from app.dependencies import get_token_header
-from app.docs.attendance import  attendance_example1
-from app.models import APIResponseModel, AttendanceCheckRequest, AttendanceCheckInAPIResponseModel
+from app.docs.attendance import attendance_coordinate_example1
+from app.models import AttendanceCheckRequest, AttendanceCheckInAPIResponseModel, \
+    AttendanceCheckOutAPIResponseModel
 from app.src.attendance.attendance_check import AttendanceCheck
 from app.src.types import attendance_check_in_type
 
@@ -29,7 +30,7 @@ async def work_start(
             title="출근 신청을 위한 인풋 파라미터 설정",
             description="출근 신청을 진행하기 위한 다양한 파라미터 설정",
             media_type="application/json",
-            example=attendance_example1
+            example=attendance_coordinate_example1
         )
 ):
     """
@@ -43,6 +44,21 @@ async def work_start(
     return {"result": attendance_check_in_response}
 
 
-@router.post("/check/out", response_model=APIResponseModel, response_class=JSONResponse)
-async def work_end():
-    return {"result": {"name": fake_attendance_db["attendance"]["name"], "time": fake_attendance_db["timestamp"]}}
+@router.post("/check-out", response_model=AttendanceCheckOutAPIResponseModel, response_class=JSONResponse)
+async def work_end(
+    request: AttendanceCheckRequest = Body(
+        title="퇴근 신청을 위한 인풋 파라미터 설정",
+        description="퇴근 신청을 진행하기 위한 다양한 파라미터 설정",
+        media_type="application/json",
+        example=attendance_coordinate_example1
+    )
+):
+    """
+    퇴근 신청 API \n
+    위/경도 정보와 계정 ID 정보를 가지고 퇴근 신청 요청을 응답합니다.\n
+    """
+    attendance_check_out_response: attendance_check_out_type = AttendanceCheck(
+        account_id=request.account_id,
+        coordinate=request.coordinate
+    ).attendance_check_out()
+    return {"result": attendance_check_out_response}

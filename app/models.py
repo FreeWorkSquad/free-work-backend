@@ -1,6 +1,6 @@
-from typing import Any, Tuple
+from typing import Any
 
-from pydantic import BaseModel, Field, constr
+from pydantic import BaseModel, constr, Field
 
 from app import Log
 from app.version import VERSION

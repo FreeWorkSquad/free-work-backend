@@ -48,7 +48,8 @@ class AttendanceCheck:
         response = {
             "check_in_time": current_time.strftime("%Y-%m-%d %H:%M:%S %Z%z"),
             "login_id": self.account_id,
-            "coordinate": f"Latitude: {self.coordinate.latitude}, Longitude: {self.coordinate.longitude}"
+            "coordinate": {"Latitude": {self.coordinate.latitude}, "Longitude": {self.coordinate.longitude}}
+
         }
 
         return response

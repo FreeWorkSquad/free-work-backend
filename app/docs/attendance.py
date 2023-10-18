@@ -11,7 +11,7 @@ attendance_normal_example = {
     "summary": "기본 출근 신청 예제",
     "description": "기본 출근 신청",
     "value": {
-        "account_id": "st23ring",
+        "account_id": "junwork123",
         "coordinate": {
             "latitude": 10,
             "longitude": 0
