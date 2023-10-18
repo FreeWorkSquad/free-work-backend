@@ -11,7 +11,7 @@ from app.docs.attendance import attendance_coordinate_example1
 from app.models import AttendanceCheckRequest, AttendanceCheckInAPIResponseModel, \
     AttendanceCheckOutAPIResponseModel
 from app.src.attendance.attendance_check import AttendanceCheck
-from app.src.types import attendance_check_in_type
+from app.src.types import attendance_check_type
 
 fake_attendance_db = {"attendance": {"name": "junwork"}, "timestamp": {"time": "2023-09-17 15:13:47 28.15274"}}
 
@@ -37,7 +37,7 @@ async def work_start(
     출근 신청 API \n
     위/경도 정보와 계정 ID 정보를 가지고 출근 신청 요청을 응답합니다.\n
     """
-    attendance_check_in_response: attendance_check_in_type = AttendanceCheck(
+    attendance_check_in_response: attendance_check_type = AttendanceCheck(
         account_id=request.account_id,
         coordinate=request.coordinate
         ).attendance_check_in()
@@ -57,7 +57,7 @@ async def work_end(
     퇴근 신청 API \n
     위/경도 정보와 계정 ID 정보를 가지고 퇴근 신청 요청을 응답합니다.\n
     """
-    attendance_check_out_response: attendance_check_out_type = AttendanceCheck(
+    attendance_check_out_response: attendance_check_type = AttendanceCheck(
         account_id=request.account_id,
         coordinate=request.coordinate
     ).attendance_check_out()
