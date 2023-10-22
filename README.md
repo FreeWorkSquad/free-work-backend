@@ -21,13 +21,21 @@
      4. 로컬에 설치된 Python 3.10 경로를 Base Interpreter로 설정
      5. `pip install .` (`pyproject.toml`에 작성한 의존성 설치, 아래 **3. Extra Setting** 참고)
 
-### Docker Build & Run
+## Docker Setting
+
+### Build
 ```bash
-docker build -t freework-backend:latest .
+docker build -t ghcr.io/freeworksquad/freework-backend:latest .
 ```
 
+### Push
 ```bash
-docker run -d -p 8000:8000 freework-backend:latest
+docker push ghcr.io/freeworksquad/freework-backend:latest
+```
+
+### Run
+```bash
+docker run -d -p 8000:8000 ghcr.io/freeworksquad/freework-backend:latest
 ```
 
 ## MongoDB
@@ -35,10 +43,15 @@ The path to which you should run the prompt should be the same as your package.j
 
 ### Build
 ```bash
-docker build -t freework-mongodb:latest -f ./database/db.Dockerfile .
+docker build -t ghcr.io/freeworksquad/freework-mongodb:latest -f ./database/db.Dockerfile .
+```
+
+### Push
+```bash
+docker push ghcr.io/freeworksquad/freework-mongodb:latest
 ```
 
 ### Run
 ```bash
-docker run -d -p 27017:27017 freework-mongodb:latest
+docker run -d -p 27017:27017 ghcr.io/freeworksquad/freework-mongodb:latest
 ```
