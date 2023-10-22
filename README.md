@@ -49,9 +49,14 @@
 
 ### 3. How To Run
 - local run
-  - `$HOME/main.py`
-    - `FileNotFoundError` or `ImportError` 발생시 _Working Directory_ (Working Directory = `$HOME`) 확인하기
-  - _http :8000/openapi.json_ or _http://localhost:3000/docs_ 로 API 명세 확인 및 테스트
+  - CLI  
+    - 프로젝트 루트 경로에서 아래 커맨드 실행
+    
+      `uvicorn app.main:app --host 0.0.0.0 --port 8000`
+  - Pycharm IDE
+    - `$HOME/main.py`
+      - `FileNotFoundError` or `ImportError` 발생시 _Working Directory_ (Working Directory = `$HOME`) 확인하기
+  - _http :8000/openapi.json_ or _http://localhost:8000/docs_ 로 API 명세 확인 및 테스트
 - docker run    
   `docker build ...` && `docker run -d -p ...` 로 컨테이너 빌드 & 구동
   ```shell
