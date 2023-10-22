@@ -81,6 +81,8 @@ docker build -t freework-mongodb:latest -f ./database/db.Dockerfile .
 docker run -d -p 27017:27017 freework-mongodb:latest
 ```
 
+### 용어 설명
+
 - **routers**: API Endpoint. 작성한 API들은 `$HOME/app/main.py`에 router를 추가한다. (ex. `app.include_router(users.router)`)
 - **src**: 모듈 메인 기능
 - unit test
