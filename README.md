@@ -61,48 +61,6 @@
   docker run -d --name python-fastapi-template -p 8000:8000 -e DEFAULT_X_TOKEN=fake-super-secret-token -e DEFAULT_TOKEN=default-token python-fastapi-template:0.1.5-dev
   ```
 
-### 📚 참고 사항 📚   
-- 해당 템플릿은 크게 **msa**와 **monlith** 두 가지로 나뉜다. (@TODO: monolith)
-- Default는 **msa**(`$HOME/app`)로 해당 템플릿을 그대로 사용하면 된다.
-- 📌 **monolith**를 사용할 경우, msa (`$HOME/app`, `$HOME/tests`)는 삭제하고 최상위 디렉터리인 monolith를 삭제 후 사용한다.
-- 📌 DB를 사용하지 않을 경우, 관련된 코드는 모두 삭제한다. (`crud.py`, `database.py`, `schemas.py` 등)
-
-
-### MSA
-> @tiangolo(FastAPI 개발자)가 제공하는 유형(ex. api, crud, 모델, 스키마)별로 파일을 구분하는 프로젝트 구조
-- 출처: https://fastapi.tiangolo.com/tutorial/bigger-applications/
-```
-.
-├── app                  # "app" is a Python package
-│   ├── __init__.py      # 
-│   ├── main.py          # 
-│   ├── dependencies.py  # 
-│   ├── exceptions.py  # custom exception
-│   ├── models.py  # 
-│   ├── schemas.py  # 데이터베이스를 사용할 경우
-│   ├── database.py  # 데이터베이스를 사용할 경우
-│   ├── crud.py  # 데이터베이스를 사용할 경우
-│   └── routers          # (API Endpoints) "routers" is a "Python subpackage" 
-│   │   ├── __init__.py  # 
-│   │   ├── items.py     # 
-│   │   └── users.py     # 
-│   └── internal         # 
-│       ├── __init__.py  # 
-│       └── admin.py     # 
-│   └── src         # (Main Functions) "src" is a "Python subpackage"
-│       ├── __init__.py  # 
-├── tests                  # app directory architecture 에 맞게 unit test 구성
-│   ├── __init__.py      # 
-│   └── routers          # 
-│   │   ├── __init__.py  # 
-│   │   ├── test_items.py     # 
-│   │   └── test_users.py     # 
-│   └── internal         # 
-│       ├── __init__.py  # 
-│       └── test_admin.py     # 
-│   └── src         # 
-│       ├── __init__.py  #
-```
 
 - **routers**: API Endpoint. 작성한 API들은 `$HOME/app/main.py`에 router를 추가한다. (ex. `app.include_router(users.router)`)
 - **src**: 모듈 메인 기능
