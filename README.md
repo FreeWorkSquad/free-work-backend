@@ -48,24 +48,38 @@
 
 
 ### 3. How To Run
-- local run
+### local run
   - CLI  
     - 프로젝트 루트 경로에서 아래 커맨드 실행
-    
-      `uvicorn app.main:app --host 0.0.0.0 --port 8000`
+    ```shell
+      uvicorn app.main:app --host 0.0.0.0 --port 8000
+    ```
   - Pycharm IDE
     - `$HOME/main.py`
       - `FileNotFoundError` or `ImportError` 발생시 _Working Directory_ (Working Directory = `$HOME`) 확인하기
   - _http :8000/openapi.json_ or _http://localhost:8000/docs_ 로 API 명세 확인 및 테스트
-- docker run    
-  `docker build ...` && `docker run -d -p ...` 로 컨테이너 빌드 & 구동
-  ```shell
-  # 도커 이미지 빌드
-  docker build -t python-fastapi-template:0.1.5-dev -f Dockerfile .
-  # 컨테이너 구동
-  docker run -d --name python-fastapi-template -p 8000:8000 -e DEFAULT_X_TOKEN=fake-super-secret-token -e DEFAULT_TOKEN=default-token python-fastapi-template:0.1.5-dev
-  ```
 
+### Docker Build & Run
+```bash
+docker build -t freework-backend:latest .
+```
+
+```bash
+docker run -d -p 8000:8000 freework-backend:latest
+```
+
+## MongoDB
+The path to which you should run the prompt should be the same as your package.json path.
+
+### Build
+```bash
+docker build -t freework-mongodb:latest -f ./database/db.Dockerfile .
+```
+
+### Run
+```bash
+docker run -d -p 27017:27017 freework-mongodb:latest
+```
 
 - **routers**: API Endpoint. 작성한 API들은 `$HOME/app/main.py`에 router를 추가한다. (ex. `app.include_router(users.router)`)
 - **src**: 모듈 메인 기능
