@@ -19,14 +19,16 @@ attendance_normal_example = {
     }
 },
 
-attendance_example = {
-    "normal": attendance_normal_example
-}
-
 attendance_coordinate_example1 = {
+    "summary": "API에 대한 설명",
+    "description": "좀더 자세한 설명",
     "account_id": "jude0124",
     "coordinate": {
         "latitude": 37.4002437530466,
         "longitude": 127.11243694616036
     }
 }
+
+
+attendance_example = [attendance_coordinate_example1]
+
