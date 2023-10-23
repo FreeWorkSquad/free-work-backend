@@ -7,13 +7,11 @@ from fastapi import APIRouter, Depends, Body
 from fastapi.responses import JSONResponse
 
 from app.dependencies import get_token_header
-from app.docs.attendance import attendance_coordinate_example1, attendance_example
+from app.docs.attendance import attendance_coordinate_example1, attendance_examples
 from app.models import AttendanceCheckRequest, AttendanceCheckInAPIResponseModel, \
     AttendanceCheckOutAPIResponseModel
 from app.src.attendance.attendance_check import AttendanceCheck
 from app.src.types import attendance_check_type
-
-fake_attendance_db = {"attendance": {"name": "junwork"}, "timestamp": {"time": "2023-09-17 15:13:47 28.15274"}}
 
 router = APIRouter(
     prefix="/attendance",
@@ -30,12 +28,13 @@ async def work_start(
             title="출근 신청을 위한 인풋 파라미터 설정",
             description="출근 신청을 진행하기 위한 다양한 파라미터 설정",
             media_type="application/json",
-            examples=attendance_example
+            examples=attendance_examples
         )
 ):
     """
     출근 신청 API \n
-    위/경도 정보와 계정 ID 정보를 가지고 출근 신청 요청을 응답합니다.\n
+    위/경도 정보와 계정 ID 정보를 가지고 출근 신청 요청을 처리하고 응답합니다.\n
+
     """
     attendance_check_in_response: attendance_check_type = attendance_checker.attendance_check_in(request)
     return {"result": attendance_check_in_response}

@@ -1,27 +1,6 @@
-normal_example = {
-    "summary": "출/퇴근 관련 API",
-    "description": "출/퇴근 관련 API",
-}
-
-create_attendance_examples = {
-    "normal": normal_example
-}
-
-attendance_normal_example = {
-    "summary": "기본 출근 신청 예제",
-    "description": "기본 출근 신청",
-    "value": {
-        "account_id": "junwork123",
-        "coordinate": {
-            "latitude": 10,
-            "longitude": 0
-        }
-    }
-},
-
 attendance_coordinate_example1 = {
-    "summary": "API에 대한 설명",
-    "description": "좀더 자세한 설명",
+    "summary": "출근 및 퇴근 기록 API",
+    "description": "출근과 퇴근 기록을 위한 API 요청 형식입니다. 이 API를 사용하여 사용자의 출근 및 퇴근 위치를 기록합니다.",
     "account_id": "jude0124",
     "coordinate": {
         "latitude": 37.4002437530466,
@@ -30,5 +9,5 @@ attendance_coordinate_example1 = {
 }
 
 
-attendance_example = [attendance_coordinate_example1]
+attendance_examples = [attendance_coordinate_example1]
 
