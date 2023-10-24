@@ -29,3 +29,7 @@ class UserModel(BaseModel):
 
 class RequestUserCreate(UserModel):
     pass
+
+
+class RequestUserUpdate(UserModel):
+    pass

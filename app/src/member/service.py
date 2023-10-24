@@ -1,16 +1,24 @@
 from app.src.database import db
 from app.src.database.collection import Collection
-from app.src.models.user import RequestUserCreate, UserModel
+from app.src.models.user import RequestUserCreate, UserModel, RequestUserUpdate
 
 
 def create_user(request: RequestUserCreate):
-    found_user = get_user(login_id=request.login_id)
-    if found_user is not None:
-        return {"user_id": -1}
+    if is_exist_user(request.login_id):
+        return {"error": "이미 존재하는 아이디입니다."}
 
     new_user: UserModel = request
     created_user_id = db.insert_one(collection=Collection.USERS, data=new_user.model_dump())
     return {"user_id": created_user_id}
+
+
+def is_exist_user(login_id: str):
+    founded_user = db.find_one(collection=Collection.USERS, query={"login_id": login_id})
+    return founded_user is not None
+
+
+def is_not_exist_user(login_id: str):
+    return not is_exist_user(login_id)
 
 
 def get_user(login_id: str):
@@ -23,10 +31,16 @@ def get_users():
     return {"users": founded_users}
 
 
-def update_user(login_id: str, request: RequestUserCreate):
-    updated_user = request
-    updated_user_id = db.update_one(collection=Collection.USERS, query={"login_id": login_id}, data=updated_user)
-    return {"user_id": updated_user_id}
+def update_user(login_id: str, request: RequestUserUpdate):
+    if is_not_exist_user(login_id):
+        return{"error": "존재하지 않는 아이디입니다."}
+
+    updated_user: UserModel = request
+    modified_count = db.update_one(
+        collection=Collection.USERS,
+        query={"login_id": login_id},
+        new_data=updated_user.model_dump())
+    return {"modified_count": modified_count}
 
 
 def delete_user(login_id: str, password: str):
@@ -35,4 +49,4 @@ def delete_user(login_id: str, password: str):
         return {"deleted": 0}
 
     deleted_count = db.delete_one(collection=Collection.USERS, query={"login_id": login_id})
-    return {"deleted": deleted_count}
+    return {"deleted_count": deleted_count}
