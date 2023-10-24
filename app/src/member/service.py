@@ -4,6 +4,10 @@ from app.src.models.user import RequestUserCreate, UserModel
 
 
 def create_user(request: RequestUserCreate):
+    found_user = get_user(login_id=request.login_id)
+    if found_user is not None:
+        return {"user_id": -1}
+
     new_user: UserModel = request
     created_user_id = db.insert_one(collection=Collection.USERS, data=new_user.model_dump())
     return {"user_id": created_user_id}
