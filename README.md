@@ -9,7 +9,6 @@
 > 근태 관리 앱 freework의 backend service 입니다.
 
 
-
 ###  Development Environment Setting
 1. 로컬 개발 환경에 `git clone ...` 
 2. Pycharm 을 열고 `open project ...`
