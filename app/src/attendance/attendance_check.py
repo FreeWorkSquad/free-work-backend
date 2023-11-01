@@ -1,13 +1,14 @@
-from timezonefinder import TimezoneFinder
 from pydantic import constr
+from timezonefinder import TimezoneFinder
 
-from app.models import Coordinate, AttendanceCheckResponse
-from app.src.attendance.time_validation import TimeValidationStrategy, TimeValidationStrategyDefault
+from app.models import Coordinate
+from app.src.attendance.time_validation import TimeValidationStrategy
 from app.src.database.fake_database import fake_db
-from app.src.types import attendance_check_in_type
 from geopy.geocoders import Nominatim
 from datetime import datetime
 import pytz
+
+from app.src.types import attendance_check_in_type
 
 
 class AttendanceCheck:
