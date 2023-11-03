@@ -116,6 +116,12 @@ conf, port = read_config(conf_path='config.yaml')
 LOG_LEVEL: str = logging.getLevelName(os.getenv('LOG_LEVEL', conf['LOG']['LEVEL']))  # type: ignore
 JSON_LOGS: bool = True if os.environ.get("JSON_LOGS", "0") == "1" else False
 
+HOSTNAME = conf['DATABASE']['HOSTNAME']
+PORT = conf['DATABASE']['PORT']
+USERNAME = conf['DATABASE']['USERNAME']
+PASSWORD = conf['DATABASE']['PASSWORD']
+DBNAME = conf['DATABASE']['DBNAME']
+
 
 # setup_logging(conf=conf, json_logs=JSON_LOGS, log_level=LOG_LEVEL)
 
