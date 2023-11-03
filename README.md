@@ -54,3 +54,16 @@ docker push ghcr.io/freeworksquad/freework-mongodb:latest
 ```bash
 docker run -d -p 27017:27017 ghcr.io/freeworksquad/freework-mongodb:latest
 ```
+
+## Compose
+
+### Run
+```bash
+docker-compose up -d
+```
+
+### Clean Up
+```bash
+docker-compose down -v
+```
+
