@@ -17,7 +17,8 @@ WORKDIR /app
 ENV PYTHONPATH=/app:${PYTHONPATH}
 
 # 필요한 파일 복사
-COPY pyproject.toml config.yaml ./
+COPY config-prod.yaml ./config.yaml
+COPY pyproject.toml ./
 COPY ./app ./app/
 
 # 패키지 설치

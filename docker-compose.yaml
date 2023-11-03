@@ -1,0 +1,30 @@
+services:
+  api:
+    image: ghcr.io/freeworksquad/freework-backend:latest
+    pull_policy: never
+    ports:
+      - 8000:8000
+    networks:
+      inner_network:
+          ipv4_address: 172.26.0.20
+  database:
+    image: ghcr.io/freeworksquad/freework-mongodb:latest
+    pull_policy: never
+    ports:
+      - 27017:27017
+    networks:
+      inner_network:
+        ipv4_address: 172.26.0.10
+
+
+volumes:
+  db_storage:
+#    external: true
+    driver: local
+
+networks:
+  inner_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.26.0.0/16
