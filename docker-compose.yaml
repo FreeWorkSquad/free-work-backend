@@ -1,7 +1,7 @@
 services:
   api:
     image: ghcr.io/freeworksquad/freework-backend:latest
-    pull_policy: never
+    pull_policy: always
     ports:
       - 8000:8000
     networks:
@@ -9,7 +9,7 @@ services:
           ipv4_address: 172.26.0.20
   database:
     image: ghcr.io/freeworksquad/freework-mongodb:latest
-    pull_policy: never
+    pull_policy: always
     ports:
       - 27017:27017
     networks:
