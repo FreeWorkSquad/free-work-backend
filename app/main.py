@@ -153,4 +153,4 @@ async def info():
 
 if __name__ == '__main__':
     """IDE 환경에서 debug 할때 사용 바람 - 로그 설정 overriding 순서 때문"""
-    uvicorn.run(app="main:app", host="127.0.0.1", port=port, log_level=LOG_LEVEL)
+    uvicorn.run(app="main:app", host="0.0.0.0", port=port, log_level=LOG_LEVEL)

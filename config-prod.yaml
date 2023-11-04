@@ -8,7 +8,7 @@ LOG:
   PATH: ./log
 
 DATABASE:
-  HOSTNAME: 'localhost'
+  HOSTNAME: 'database'
   PORT: '27017'
   USERNAME: 'root'
   PASSWORD: '1234'
