@@ -7,13 +7,11 @@ from fastapi import APIRouter, Depends, Body
 from fastapi.responses import JSONResponse
 
 from app.dependencies import get_token_header
-from app.docs.attendance import attendance_coordinate_example1
+from app.docs.attendance import attendance_coordinate_example1, attendance_examples
 from app.models import AttendanceCheckRequest, AttendanceCheckInAPIResponseModel, \
     AttendanceCheckOutAPIResponseModel
 from app.src.attendance.attendance_check import AttendanceCheck
-from app.src.types import attendance_check_in_type
-
-fake_attendance_db = {"attendance": {"name": "junwork"}, "timestamp": {"time": "2023-09-17 15:13:47 28.15274"}}
+from app.src.types import attendance_check_type
 
 router = APIRouter(
     prefix="/attendance",
@@ -21,8 +19,8 @@ router = APIRouter(
     dependencies=[Depends(get_token_header)],
 )
 
+attendance_checker = AttendanceCheck()
 
-# 1. mock data를 사용하는 경우
 
 @router.post("/check-in", response_model=AttendanceCheckInAPIResponseModel, response_class=JSONResponse)
 async def work_start(
@@ -30,35 +28,30 @@ async def work_start(
             title="출근 신청을 위한 인풋 파라미터 설정",
             description="출근 신청을 진행하기 위한 다양한 파라미터 설정",
             media_type="application/json",
-            example=attendance_coordinate_example1
+            examples=attendance_examples
         )
 ):
     """
     출근 신청 API \n
-    위/경도 정보와 계정 ID 정보를 가지고 출근 신청 요청을 응답합니다.\n
+    위/경도 정보와 계정 ID 정보를 가지고 출근 신청 요청을 처리하고 응답합니다.\n
+
     """
-    attendance_check_in_response: attendance_check_in_type = AttendanceCheck(
-        account_id=request.account_id,
-        coordinate=request.coordinate
-        ).attendance_check_in()
+    attendance_check_in_response: attendance_check_type = attendance_checker.attendance_check_in(request)
     return {"result": attendance_check_in_response}
 
 
 @router.post("/check-out", response_model=AttendanceCheckOutAPIResponseModel, response_class=JSONResponse)
 async def work_end(
-    request: AttendanceCheckRequest = Body(
-        title="퇴근 신청을 위한 인풋 파라미터 설정",
-        description="퇴근 신청을 진행하기 위한 다양한 파라미터 설정",
-        media_type="application/json",
-        example=attendance_coordinate_example1
-    )
+        request: AttendanceCheckRequest = Body(
+            title="퇴근 신청을 위한 인풋 파라미터 설정",
+            description="퇴근 신청을 진행하기 위한 다양한 파라미터 설정",
+            media_type="application/json",
+            example=attendance_coordinate_example1
+        )
 ):
     """
     퇴근 신청 API \n
     위/경도 정보와 계정 ID 정보를 가지고 퇴근 신청 요청을 응답합니다.\n
     """
-    attendance_check_out_response: attendance_check_out_type = AttendanceCheck(
-        account_id=request.account_id,
-        coordinate=request.coordinate
-    ).attendance_check_out()
+    attendance_check_out_response: attendance_check_type = attendance_checker.attendance_check_out(request)
     return {"result": attendance_check_out_response}

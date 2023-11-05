@@ -6,7 +6,7 @@ class CoordinateType(BaseModel):
     longitude: float
 
 
-class attendance_check_in_type(BaseModel):
+class attendance_check_type(BaseModel):
     check_in_time: str
     login_id: str
     coordinate: CoordinateType
