@@ -1,12 +1,7 @@
 from pymongo import MongoClient
 
+from app import USERNAME, PASSWORD, HOSTNAME, PORT, DBNAME
 from app.src.database.database import Database
-
-HOSTNAME = 'localhost'
-PORT = '27017'
-USERNAME = 'root'
-PASSWORD = '1234'
-DBNAME = 'admin'
 
 
 def create_db_enpoint(username: str, password: str, hostname: str, port: str) -> str:

@@ -22,6 +22,13 @@
 
 ## Docker Setting
 
+### Requirements
+
+```bash
+export CR_PAT=<YOUR_GITHUB_TOKEN>
+echo $CR_PAT | sudo docker login ghcr.io -u <YOUR_GITHUB_NAME> --password-stdin
+```
+
 ### Build
 ```bash
 docker build -t ghcr.io/freeworksquad/freework-backend:latest .
@@ -54,3 +61,16 @@ docker push ghcr.io/freeworksquad/freework-mongodb:latest
 ```bash
 docker run -d -p 27017:27017 ghcr.io/freeworksquad/freework-mongodb:latest
 ```
+
+## Compose
+
+### Run
+```bash
+docker-compose up -d
+```
+
+### Clean Up
+```bash
+docker-compose down -v
+```
+

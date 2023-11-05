@@ -6,3 +6,10 @@ LOG:
   RETENTION: 10 days
   COMPRESSION: zip
   PATH: ./log
+
+DATABASE:
+  HOSTNAME: 'localhost'
+  PORT: '27017'
+  USERNAME: 'root'
+  PASSWORD: '1234'
+  DBNAME: 'admin'
