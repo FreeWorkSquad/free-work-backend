@@ -148,12 +148,16 @@ async def info():
         "git_short_revision": GIT_SHORT_REVISION,
         "build_date": BUILD_DATE
     }
+
+
 origins = [
     "*",
     "http://localhost",
-    "http://localhost:8080",
-    "http://localhost:3000"
+    "http://localhost:80",
+    "http://localhost:443",
+    "http://localhost:4200"
 ]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
