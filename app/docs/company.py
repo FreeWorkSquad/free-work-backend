@@ -36,7 +36,7 @@ request_company_create_examples = {
   "add_tex_declare_yn": "Y",
   "use_yn": "N",
   "end_ymd": ""
-}
+},
 
 
 request_company_update_examples = {
@@ -72,4 +72,4 @@ request_company_update_examples = {
   "add_tex_declare_yn": "Y",
   "use_yn": "N",
   "end_ymd": ""
-}
+},
