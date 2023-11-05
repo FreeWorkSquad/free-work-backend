@@ -14,7 +14,7 @@ from starlette.responses import JSONResponse
 from app import SERVICE_CODE, check_env_exist, LOG_LEVEL, MAJOR_VERSION, port, setup_logging, JSON_LOGS, conf
 from app.dependencies import get_token_header
 from app.internal import admin
-from app.routers import attendance, member
+from app.routers import attendance, member, company
 from app.src.config import Description, Service
 from app.src.exception.service import SampleServiceError
 from app.version import SERVICE, GIT_REVISION, GIT_BRANCH, BUILD_DATE, GIT_SHORT_REVISION
@@ -42,6 +42,7 @@ app = FastAPI(
 app.logger = setup_logging(conf=conf, json_logs=JSON_LOGS, log_level=LOG_LEVEL)  # type: ignore
 
 if SERVICE == Service.SAMPLE.value:
+    app.include_router(company.router)
     app.include_router(member.router)
     app.include_router(attendance.router)
     app.include_router(

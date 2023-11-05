@@ -37,3 +37,9 @@ class Database:
 
     def delete_many(self, collection: Collection, query):
         return __encode__(self.db[collection.value].delete_many(query).raw_result)
+
+    def is_exist(self, collection: Collection, query):
+        return self.find_one(collection=collection, query=query) is not None
+
+    def is_not_exist(self, collection: Collection, query):
+        return not self.is_exist(collection=collection, query=query)

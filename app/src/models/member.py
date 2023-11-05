@@ -2,8 +2,8 @@ from pydantic import BaseModel, Field
 from typing import List, Dict, Optional
 
 
-class UserModel(BaseModel):
-    login_id: str = Field(..., min_length=5, max_length=100, description="로그인 아이디")
+class MemberModel(BaseModel):
+    member_id: str = Field(..., min_length=5, max_length=100, description="회원 고유번호")
     email_address: str = Field(..., min_length=5, max_length=100, description="이메일 주소")
     employ_ymd: str = Field(..., max_length=10, description="입사일(yyyy-MM-dd)")
     telephone_no: Optional[str] = Field(None, max_length=30, description="전화번호")
@@ -27,9 +27,9 @@ class UserModel(BaseModel):
     initialize_password: str = Field(..., max_length=100, description="ADMIN: 초기 비밀번호 / USER: 초대메일 받을 이메일 주소")
 
 
-class RequestUserCreate(UserModel):
+class RequestMemberCreate(MemberModel):
     pass
 
 
-class RequestUserUpdate(UserModel):
+class RequestMemberUpdate(MemberModel):
     pass

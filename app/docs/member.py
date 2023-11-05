@@ -4,7 +4,7 @@ normal_example = {
 }
 
 request_member_create_examples = {
-    "login_id": "john_doe",
+    "member_id": "john_doe",
     "email_address": "john.doe@example.com",
     "employ_ymd": "2023-10-22",
     "telephone_no": "123-456-7890",
@@ -33,7 +33,7 @@ request_member_create_examples = {
 },
 
 request_member_update_examples = {
-    "login_id": "john_doe",
+    "member_id": "john_doe",
     "email_address": "john.doe@example.com",
     "employ_ymd": "2023-10-22",
     "telephone_no": "000-000-000",
