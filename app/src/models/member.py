@@ -1,21 +1,22 @@
 from pydantic import BaseModel, Field
 from typing import List, Dict, Optional
 
+from app.src.models.address import AddressModel
+from app.src.models.contact import CellPhoneNumber, OfficePhoneNumber
+
 
 class MemberModel(BaseModel):
     member_id: str = Field(..., min_length=5, max_length=100, description="회원 고유번호")
     email_address: str = Field(..., min_length=5, max_length=100, description="이메일 주소")
     employ_ymd: str = Field(..., max_length=10, description="입사일(yyyy-MM-dd)")
-    telephone_no: Optional[str] = Field(None, max_length=30, description="전화번호")
-    cellphone_no: Optional[str] = Field(None, max_length=100, description="휴대폰 번호")
+    cellphone_no: CellPhoneNumber = Field(None, description="개인 연락처")
+    office_phone_no: Optional[OfficePhoneNumber] = Field(None, description="사무실 연락처")
     birth_ymd: Optional[str] = Field(None, max_length=30, description="생년월일(yyyy-MM-dd)")
     gender_cd: Optional[str] = Field(None, max_length=30, description="성별(MALE, FEMALE)")
     emp_nick: Optional[str] = Field(None, max_length=100, description="닉네임특수 문자 중 ! @ & ( ) - _ + [ ] { } , . 만 허용")
     locale_type_cd: Optional[str] = Field(None, max_length=30, description="로케일정보")
     tmzn_type_cd: Optional[str] = Field(None, max_length=30, description="타임존정보")
-    zip_code: Optional[str] = Field(None, max_length=10, description="우편번호")
-    address: Optional[str] = Field(None, max_length=100, description="주소")
-    address_detail: Optional[str] = Field(None, max_length=100, description="상세 주소")
+    address: Optional[AddressModel] = Field(None, description="회원 주소")
     name: str = Field(..., max_length=100, description="기본 이름")
     i18n_names: Optional[Dict[str, str]] = Field(None, description="이름 다국어 Map<Locale, String>")
     dept_external_key: str = Field(..., max_length=100, description="부서 외부키")

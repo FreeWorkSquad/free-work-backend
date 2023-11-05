@@ -7,16 +7,22 @@ request_member_create_examples = {
     "member_id": "john_doe",
     "email_address": "john.doe@example.com",
     "employ_ymd": "2023-10-22",
-    "telephone_no": "123-456-7890",
-    "cellphone_no": "987-654-3210",
+    "cellphone_no": {
+        "number": "010-1234-5678"
+    },
+    "office_phone_no": {
+        "number": "02-345-6789"
+    },
     "birth_ymd": "1990-01-15",
     "gender_cd": "M",
     "emp_nick": "John",
     "locale_type_cd": "en_US",
     "tmzn_type_cd": "PST",
-    "zip_code": "12345",
-    "address": "123 Main Street",
-    "address_detail": "Apt 456",
+    "address": {
+        "zipcode": "12345",
+        "addr": "123 Main Street",
+        "addr_dtl": "Apt 456",
+    },
     "name": "John Doe",
     "i18n_names": {
         "additionalProp1": "Name in French",
@@ -36,16 +42,22 @@ request_member_update_examples = {
     "member_id": "john_doe",
     "email_address": "john.doe@example.com",
     "employ_ymd": "2023-10-22",
-    "telephone_no": "000-000-000",
-    "cellphone_no": "987-654-3210",
+    "cellphone_no": {
+        "number": "010-0000-0000"
+    },
+    "office_phone_no": {
+        "number": "02-000-0000"
+    },
     "birth_ymd": "1995-01-15",
     "gender_cd": "M",
     "emp_nick": "John",
     "locale_type_cd": "en_US",
     "tmzn_type_cd": "PST",
-    "zip_code": "12345",
-    "address": "123 Main Street",
-    "address_detail": "Apt 456",
+    "address": {
+        "zipcode": "12345",
+        "addr": "123 Main Street",
+        "addr_dtl": "Apt 456",
+    },
     "name": "John Doe",
     "i18n_names": {
         "additionalProp1": "Name in French",
