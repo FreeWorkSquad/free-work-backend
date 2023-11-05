@@ -9,6 +9,7 @@ from fastapi import Depends, FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from pydantic import ValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
 
 from app import SERVICE_CODE, check_env_exist, LOG_LEVEL, MAJOR_VERSION, port, setup_logging, JSON_LOGS, conf
@@ -147,6 +148,19 @@ async def info():
         "git_short_revision": GIT_SHORT_REVISION,
         "build_date": BUILD_DATE
     }
+origins = [
+    "*",
+    "http://localhost",
+    "http://localhost:8080",
+    "http://localhost:3000"
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # setup logging last, to make sure no library overwrites it
