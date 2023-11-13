@@ -5,8 +5,10 @@ class FakeDatabase:
     def __init__(self):
         self.accounts = {
             "jude0124": {
-                "work_start_time": "09:00:00",  # 예정 근무 시작 시간
-                "work_end_time": "18:00:00",  # 예정 근무 시작 시간
+                "check_in_time": "09:00:00",  # 예정 근무 시작 시간
+                "check_out_time": "18:00:00",  # 예정 근무 종료 시간
+                "updated_check_in_hour": "8",  # 수정할 출근 시각 정보 (시간)
+                "updated_check_in_minute": "50",  # 수정할 출근 시각 정보 (분)
                 "company_coordinates": Coordinate(latitude=37.4002437530466, longitude=127.11243694616036)  # 회사 좌표
             }
         }

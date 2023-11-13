@@ -165,6 +165,6 @@ class Log:
         return Log.log_level <= logging.FATAL
 
 
-X_TOKEN = os.getenv('X_TOKEN', "free-work-fake-token")
+X_TOKEN = os.getenv('X_TOKEN', "1")
 MAJOR_VERSION = pyproject_info['project']['version']
 ISRELEASED = False

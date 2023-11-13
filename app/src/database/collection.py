@@ -1,6 +1,5 @@
 from enum import Enum
 
-from app.src.database import db
 
 
 class Collection(Enum):
@@ -15,6 +14,3 @@ class AttendanceSchema:
     CHECK_OUT_TIME = "check_out_time"  # 퇴근 시간
     COORDINATE = "coordinate"  # 출퇴근 좌표 정보
 
-
-# 출퇴근 데이터 컬렉션 생성
-attendance_collection = db[Collection.ATTENDANCE.value]
