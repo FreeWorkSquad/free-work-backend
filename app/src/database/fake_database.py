@@ -19,6 +19,9 @@ class FakeDatabase:
     def save_check_in(self, account_id, check_in_time):
         self.check_ins[account_id] = check_in_time
 
+    def save_check_out(self, account_id, check_out_time):
+        self.check_ins[account_id] = check_out_time
+
     def get_check_in_time(self, account_id):
         return self.check_ins.get(account_id)
 
